@@ -1,0 +1,85 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(fonts/digital-7.ttf);
+}
+
+.clock {
+    font-family: myFirstFont;
+    border: black 20px solid ;
+    border-radius: 2vw;
+    height: 16vw;
+    text-align: center;
+    text-shadow: 0 0 10px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 30px rgba(86,92,111,0.81),
+    0 0 40px rgba(86,92,111,0.81),
+    0 0 50px rgba(86,92,111,0.81),
+    0 0 60px rgba(86,92,111,0.81),
+    0 0 70px rgba(86,92,111,0.81);
+    width: 52vw;
+    color: black;
+    font-size: 16vw;
+    display: flex;
+    position: relative;
+    background: black;
+    overflow: hidden;
+    left: 24vw;
+    text-align: center;
+    top: 35vh;
+}
+
+.clock::before, .clock::after {
+    content: '';
+    width: 52vw ;
+    height: 2vw;
+    background: linear-gradient(to top, transparent, rgba(89,9,239,0.93));
+    position: absolute;
+    z-index: 2;
+}
+
+.clock::after {
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent, rgba(89,9,239,0.93));
+}
+
+.clock > div {
+    display: flex;
+}
+
+.lavina{
+    position: absolute;
+    top:10vh;
+    width: 40vw;
+    left: 30vw;
+}
+
+.none{
+    display: none;
+}
+
+.yes , .check {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.yes{
+    bottom: 20px;
+}
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+.alert{
+    position: absolute;
+    top:10px;
+    left:10px;
+    font-size: 4em;
+    color: red;
+}
