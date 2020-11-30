@@ -10,6 +10,7 @@ const App = () => {
 
     const [play, {stop}] = useSound(uvd);
     let sound = document.getElementById('sound')
+    let audio = document.getElementById('audio')
     let [state, setState] = useState(false)
     let [Alert, setAlert] = useState('')
     let [cls, setCls] = useState('none')
@@ -30,25 +31,25 @@ const App = () => {
             },2000)
             if (date.getMinutes() < xxz[1]) {
                 const id = setTimeout(() => {
-                    sound.play()
+                    audio.play()
 
                     setTimeout( ()=>{
-                        sound.load()
+                        audio.load()
                     } , 4*60*1000)
                 }, ((xxz[1] - date.getMinutes()) * 60 - date.getSeconds()) * 1000)
                 return () => clearTimeout(id)
             }
         }
 
-        if (date.getHours() < xxz[0] ) {
+        if (date.getHours() < xxz[0] && cls == 'yes' ) {
             setAlert('Trenirovka qo\'shildi')
             setTimeout(()=>{
                 setAlert('')
             },1000)
             const id = setTimeout(() => {
-                sound.play()
+                audio.play()
                 setTimeout( ()=>{
-                    sound.load()
+                    audio.load()
                 } , 4*60*1000)
             }, (((xxz[0] - date.getHours()) * 60 - date.getMinutes()) * 60 - date.getSeconds()) * 1000)
             return () => clearTimeout(id)
@@ -89,8 +90,8 @@ const App = () => {
                     if (time > 0) {
                         setTime(time -= 1)
                     } else {
-                        document.getElementById('audio').play()
-                        setTimeout(document.getElementById('audio').load, 5000)
+                        sound.play()
+                        setTimeout(sound.load, 5000)
                         setSearch(true)
                         setInter(prev => !prev)
                         setColor("black")
@@ -157,7 +158,7 @@ const App = () => {
         return result && result.res > 0 ? result : undefined
     }
     return <div className="App">
-        <audio id='audio' src={uvd} >
+        <audio id='audio' src={music} >
         </audio>
         <div className="clock" style={{color: color}}>
             <div className="hours">
@@ -201,11 +202,11 @@ const App = () => {
             <label htmlFor="muz"> Trenirovka uchun musiqa tanlang </label>
             <input type="file" id='muz' onChange={e => {
 
-                if(!sound.paused){
-                    sound.src = URL.createObjectURL(e.target.files[0]);
-                    sound.play()
+                if(!audio.paused){
+                    audio.src = URL.createObjectURL(e.target.files[0]);
+                    audio.play()
                 }else{
-                    sound.src = URL.createObjectURL(e.target.files[0]);
+                    audio.src = URL.createObjectURL(e.target.files[0]);
                 }
 
             }} accept=".mp3,audio/*"/>
@@ -223,11 +224,11 @@ const App = () => {
                 setTimeout(()=>{
                     setAlert('')
                 },2000)
-                !sound.paused && sound.load()
+                !audio.paused && audio.load()
             }
         }}/></div>
         <div className='alert'>{Alert}</div>
-        <audio id="sound"  src={music}></audio>
+        <audio id="sound"  src={uvd}></audio>
 
     </div>
 }
